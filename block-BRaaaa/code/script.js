@@ -8,7 +8,7 @@ let allMovies = [
   },
   {
     name: "Up",
-    watched: false,
+    watched: true,
   },
 ];
 
@@ -19,43 +19,31 @@ input.addEventListener("keydown", (event) => {
       watched: false,
     });
     event.target.value = "";
-    createMovieUI();
+    createMovieUI(allMovies,rootElm);
   }
 });
 
-function deleteMovie(event) {
-  let id = event.target.dataset.id;
-  allMovies.splice(id, 1);
-  createMovieUI();
-}
 
 function handleChange(event) {
   let id = event.target.id;
   allMovies[id].watched = !allMovies[id].watched;
+  createMovieUI(allMovies,rootElm);
 }
 
-function createMovieUI() {
-  rootElm.innerHTML = "";
-  allMovies.forEach((movie, i) => {
+function createMovieUI(data,root) {
+  root.innerHTML = "";
+  data.forEach((movie, i) => {
     let li = document.createElement("li");
-    let div = document.createElement("div");
-    let input = document.createElement("input");
-    input.type = "checkbox";
-    input.id = i;
-    input.checked = movie.watched;
-    input.addEventListener("change", handleChange);
-    let label = document.createElement("label");
+    let button = document.createElement("button");
+    button.id = i;
+    button.innerText = movie.watched? 'watched' : 'To Watch';
+    button.addEventListener('click', handleChange);
+    let label = document.createElement('label');
+    label.for = i;
     label.innerText = movie.name;
-    let span = document.createElement("span");
-    span.innerText = "X";
-    span.addEventListener("click", deleteMovie);
-
-    div.append(input, label);
-
-    li.append(div, span);
-
+    li.append(label,button);
     rootElm.append(li);
   });
 }
 
-createMovieUI();
+createMovieUI(allMovies,rootElm);

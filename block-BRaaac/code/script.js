@@ -54,23 +54,17 @@ function elm(type,attr={}, ...children){
 function createMovieUI(data,root) {
     root.innerHTML = "";
     data.forEach((movie, i) => {
+        let btn = elm("button",{ id : i }, movie.watched? 'watched' : 'To Watch');
+        btn.addEventListener('click', handleChange)
         let li = elm(
             "li",
             {},
             elm("lable",{
                 for : i,
             }, movie.name),
-            elm("button",{
-                id : i,
-            }, movie.watched? 'watched' : 'To Watch')
+            btn
             
         )
-        // let button = document.createElement("button");
-        // button.id = i;
-        // button.innerText = movie.watched? 'watched' : 'To Watch';
-        // let label = document.createElement('label');
-        // label.for = i;
-        // label.innerText = movie.name;
         rootElm.append(li);
     });
 }

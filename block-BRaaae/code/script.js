@@ -19,7 +19,7 @@ input.addEventListener("keydown", (event) => {
       watched: "To Watch",
     });
     event.target.value = "";
-    createMovieUI();
+    createMovieUI(allMovies,rootElm);
   }
 });
 
@@ -30,7 +30,7 @@ function changeWatch(event) {
   } else {
     allMovies[id].watched = "To Watch";
   }
-  createMovieUI();
+  createMovieUI(allMovies,rootElm);
 }
 
 let elm = React.createElement;
@@ -55,4 +55,4 @@ function createMovieUI() {
     ReactDOM.render(movies, rootElm);
 }
 
-createMovieUI();
+createMovieUI(allMovies,rootElm);

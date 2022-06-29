@@ -34,7 +34,7 @@
       let allMovies = [];
 
       input.addEventListener("keydown", (event) => {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13 && event.target.value) {
           allMovies.push({
             name: event.target.value,
             watched: "To Watch",
@@ -46,11 +46,7 @@
 
       function changeWatch(event) {
         let id = event.target.dataset.id;
-        if (allMovies[id].watched === "To Watch") {
-          allMovies[id].watched = "Watched";
-        } else {
-          allMovies[id].watched = "To Watch";
-        }
+        allMovies[id].watched=!allMovies[id].watched
         createMovieUI();
       }
 
@@ -71,7 +67,7 @@
             // );
             return <li key={movie.name}>
               <p htmlFor={i}>{movie.name}</p>
-              <span data-id={i} onClick={changeWatch}> {movie.watched}</span>
+              <span data-id={i} onClick={changeWatch}> {movie.watched? 'watched' : 'To Watch'}</span>
             </li>
           });
           ReactDOM.render(movies, rootElm);

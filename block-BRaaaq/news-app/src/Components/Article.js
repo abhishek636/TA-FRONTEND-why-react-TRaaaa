@@ -20,13 +20,13 @@ function Article(props) {
 }
 
 Article.prototype = {
-  author: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  urlToImage: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  url: PropTypes.string,
+  urlToImage: PropTypes.string,
+  publishedAt: PropTypes.string,
+  content: PropTypes.string,
 };
 
 export default Article;
